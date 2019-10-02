@@ -19,12 +19,15 @@
   "author": "JJ & PZ",
   "license": "MIT",
   "devDependencies": {
+    "@types/chart.js": "^2.8.5",
     "electron": "^6.0.8",
     "tslint": "^5.19.0",
-    "typescript": "^3.6.0"
+    "typescript": "^3.6.0",
+    "chart.js": "^2.8.0"
   },
   "bugs": {
     "url": "https://github.com/pantalejmon/soib/issues"
   },
-  "homepage": "https://github.com/pantalejmon/soib#readme"
+  "homepage": "https://github.com/pantalejmon/soib#readme",
+  "dependencies": {}
 }

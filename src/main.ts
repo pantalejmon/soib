@@ -7,9 +7,6 @@ function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         height: 600,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
         width: 800,
     });
 
@@ -17,7 +14,7 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "../src/gui/index.html"));
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on("closed", () => {
