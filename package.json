@@ -1,0 +1,30 @@
+{
+  "name": "soib",
+  "version": "0.0.1",
+  "description": "Projekt z przedmiotu soib",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "npm run build && electron ./dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pantalejmon/soib.git"
+  },
+  "keywords": [
+    "Projekt",
+    "zajebisty"
+  ],
+  "author": "JJ & PZ",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^6.0.8",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/pantalejmon/soib/issues"
+  },
+  "homepage": "https://github.com/pantalejmon/soib#readme"
+}
