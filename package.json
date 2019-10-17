@@ -6,7 +6,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/main.js"
+    "start": "npm run build && electron ./dist/main.js",
+    "run": "electron ./dist/main.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
     "@types/chart.js": "^2.8.5",
     "electron": "^6.0.8",
     "tslint": "^5.19.0",
-    "typescript": "^3.6.0",
+    "typescript": "^2.1.6",
     "chart.js": "^2.8.0"
   },
   "bugs": {
