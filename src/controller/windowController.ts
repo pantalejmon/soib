@@ -30,7 +30,6 @@ export default class WindowController {
 
         console.log("Tworze api");
         ipcMain.on('selectMaterial', (event, arg) => {
-            console.log("Coś doszło");
             event.reply('sendData', this.calculation.compute(arg));
         })
     }

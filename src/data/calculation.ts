@@ -15,6 +15,7 @@ export default class Calculation {
     compute(material: string): DataPack {
         this.recognizeMaterial(material);
         let wavelengths: Array<number> = this.linespace(0.25, 4.25, 20);
+        console.log("[CALCULATIONS] Licze dla materiału: " + this.pointer.getname());
         let DmArray: Array<number> = new Array<number>();
         for (let wl of wavelengths) DmArray.push(this.pointer.calculateD(wl));
 
@@ -28,16 +29,22 @@ export default class Calculation {
         switch (material) {
             case "SiO2":
                 this.pointer = this.SiO2;
+                break;
             case "SiO2GiO2":
                 this.pointer = this.SiO2GiO2;
+                break;
             case "GeO2":
                 this.pointer = this.GeO2;
+                break;
             case "Al2O3":
                 this.pointer = this.Al2O3;
+                break;
             case "ZrO2":
                 this.pointer = this.ZrO2;
+                break;
             default:
                 this.pointer = this.SiO2;
+                break;
         }
     }
 
