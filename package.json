@@ -30,5 +30,7 @@
     "url": "https://github.com/pantalejmon/soib/issues"
   },
   "homepage": "https://github.com/pantalejmon/soib#readme",
-  "dependencies": {}
+  "dependencies": {
+    "electron-tabs": "^0.11.0"
+  }
 }
