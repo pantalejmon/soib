@@ -1,5 +1,6 @@
 const { ipcRenderer } = require('electron');
 const Chart = require('chart.js');
+require('chartjs-plugin-zoom');
 // const TabGroup = require("electron-tabs");
 
 interface DataPack {
@@ -10,6 +11,10 @@ let data: DataPack = {
     linespace: [],
     dmArray: []
 };
+
+
+ipcRenderer.send('selectMaterial', 'SiO2');
+
 // let tabGroup = new TabGroup();
 // let tab = tabGroup.addTab({
 //     title: "SiO2",
@@ -21,26 +26,30 @@ let data: DataPack = {
 //     src: "http://google.com",
 //     visible: true
 // });
-function getDataSi(){
+function getDataSi() {
     ipcRenderer.send('selectMaterial', 'SiO2');
-console.log("Wysłalem dane")
+    console.log("Wysłalem dane")
 }
-function getDataSiO(){
+function getDataSiO() {
     ipcRenderer.send('selectMaterial', 'SiO2GiO2');
-console.log("Wysłalem dane")
+    console.log("Wysłalem dane")
 }
-function getDataGe(){
+function getDataGe() {
     ipcRenderer.send('selectMaterial', 'GeO2');
-console.log("Wysłalem dane")
+    console.log("Wysłalem dane")
 }
-function getDataAl(){
+function getDataAl() {
     ipcRenderer.send('selectMaterial', 'Al2O3');
-console.log("Wysłalem dane")
+    console.log("Wysłalem dane")
 }
-function getDataZr(){
+function getDataZr() {
     ipcRenderer.send('selectMaterial', 'ZrO2');
-console.log("Wysłalem dane")
+    console.log("Wysłalem dane")
 }
+
+
+
+
 // ipcRenderer.send('selectMaterial', 'SiO2');
 ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
     data = arg;
@@ -51,8 +60,9 @@ ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
     if (ctx) {
         var myLineChart = new Chart(ctx, {
             type: 'line',
+
             data: {
-                labels: data.linespace,
+                labels: data.linespace,// [0.25, 0.50, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25],
                 datasets: [{
                     data: data.dmArray,
                     label: "Dyspersja",
@@ -63,8 +73,32 @@ ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
                 title: {
                     display: true,
                     text: 'Wykres z soib'
+                },
+                responsive: true,
+
+
+                // Container for zoom options
+                pan: {
+                    // Boolean to enable panning
+                    enabled: true,
+
+                    // Panning directions. Remove the appropriate direction to disable 
+                    // Eg. 'y' would only allow panning in the y direction
+                    mode: 'xy'
+                },
+
+                // Container for zoom options
+                zoom: {
+                    // Boolean to enable zooming
+                    enabled: true,
+
+                    // Zooming directions. Remove the appropriate direction to disable 
+                    // Eg. 'y' would only allow zooming in the y direction
+                    mode: 'xy',
                 }
             }
+
+
         });
     }
 })
@@ -129,7 +163,7 @@ ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
 // console.log("Wysłalem dane")
 // ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
 //     data[3] = arg;
-    
+
 //     console.log(data[3].linespace);
 //     console.log(data[3].dmArray);
 //     console.log(arg);
@@ -158,7 +192,7 @@ ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
 // console.log("Wysłalem dane")
 // ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
 //     data[4] = arg;
-    
+
 //     console.log(data[4].linespace);
 //     console.log(data[4].dmArray);
 //     console.log(arg);

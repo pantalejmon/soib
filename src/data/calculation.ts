@@ -14,7 +14,7 @@ export default class Calculation {
 
     compute(material: string): DataPack {
         this.recognizeMaterial(material);
-        let wavelengths: Array<number> = this.linespace(0.25, 4.25, 20);
+        let wavelengths: Array<number> = this.linespace(0.25, 4.25, 1000);
         console.log("[CALCULATIONS] Licze dla materiału: " + this.pointer.getname());
         let DmArray: Array<number> = new Array<number>();
         for (let wl of wavelengths) DmArray.push(this.pointer.calculateD(wl));
