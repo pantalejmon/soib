@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>SOIB</title>
 </head>
 
@@ -13,13 +14,16 @@
         <div class="etabs-buttons"></div>
     </div>
     <div class="etabs-views"></div> -->
-    <input type="button" onclick="getDataSi()" value="SiO2" />
-    <input type="button" onclick="getDataSiO()" value="SiO2GiO2" />
-    <input type="button" onclick="getDataGe()" value="GeO2" />
-    <input type="button" onclick="getDataAl()" value="Al2O3" />
-    <input type="button" onclick="getDataZr()" value="ZrO2" />
+
 
     <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="buttonbar">
+        <button onclick="getDataSi()" id="SiO2">SiO2</button>
+        <button onclick="getDataSiO()" id="SiO2GiO2">SiO2GiO2</button>
+        <button onclick="getDataGe()" id="GeO2">GeO2</button>
+        <button onclick="getDataAl()" id="Al2O3">Al2O3</button>
+        <button onclick="getDataZr()" id="ZrO2">ZrO2</button>
+    </div>
     <!-- <script src="Chart.bundle.min.js"></script> -->
     <script src="../../dist/view/index.js"></script>
 </body>
