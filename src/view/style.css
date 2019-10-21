@@ -57,3 +57,24 @@ button:hover:after {
     width: 100%;
     transition: 800ms ease all;
 }
+
+
+.active{
+    background: rgb(236, 69, 78);
+    
+}
+
+
+.active:hover{
+    color: rgb(236, 69, 78);
+    
+}
+
+
+
+.active:before,
+.active:after {
+
+    background:rgb(236, 69, 78);;
+    
+}

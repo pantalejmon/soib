@@ -7,6 +7,14 @@ interface DataPack {
     linespace: Array<number>;
     dmArray: Array<number>;
 }
+interface Point {
+    x: number;
+    y: number;
+}
+
+
+
+
 let data: DataPack = {
     linespace: [],
     dmArray: []
@@ -26,26 +34,38 @@ ipcRenderer.send('selectMaterial', 'SiO2');
 //     src: "http://google.com",
 //     visible: true
 // });
-function getDataSi() {
-    ipcRenderer.send('selectMaterial', 'SiO2');
-    console.log("Wysłalem dane")
+function getData(material: string) {
+    let buttons: any = document.getElementsByTagName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons.className = buttons[i].classList.remove("active");
+        // console.log("Usuwam zaznaczenie z przycisku: ")
+        // console.log(buttons[i])
+    }
+    document.getElementById(material)!.classList.add("active");
+
+    switch (material) {
+        case "SiO2":
+            ipcRenderer.send('selectMaterial', 'SiO2');
+            break;
+        case "SiO2GiO2":
+            ipcRenderer.send('selectMaterial', 'SiO2GiO2');
+            break;
+        case "GeO2":
+            ipcRenderer.send('selectMaterial', 'GeO2');
+            break;
+        case "Al2O3":
+            ipcRenderer.send('selectMaterial', 'Al2O3');
+            break;
+        case "ZrO2":
+            ipcRenderer.send('selectMaterial', 'ZrO2');
+            break;
+        default:
+            ipcRenderer.send('selectMaterial', 'SiO2'); break;
+    }
+    console.log("kliknąłeś material: " + material)
+
 }
-function getDataSiO() {
-    ipcRenderer.send('selectMaterial', 'SiO2GiO2');
-    console.log("Wysłalem dane")
-}
-function getDataGe() {
-    ipcRenderer.send('selectMaterial', 'GeO2');
-    console.log("Wysłalem dane")
-}
-function getDataAl() {
-    ipcRenderer.send('selectMaterial', 'Al2O3');
-    console.log("Wysłalem dane")
-}
-function getDataZr() {
-    ipcRenderer.send('selectMaterial', 'ZrO2');
-    console.log("Wysłalem dane")
-}
+
 
 
 
@@ -53,23 +73,28 @@ function getDataZr() {
 // ipcRenderer.send('selectMaterial', 'SiO2');
 ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
     data = arg;
-    console.log(arg);
-    console.log(data.linespace);
-    console.log(data.dmArray);
+    // console.log(arg);
+    // console.log(data.linespace);
+    // console.log(data.dmArray);
+    let pointArray: Array<Point> = dataToPoints(data);
     var ctx: any = document.getElementById('myChart');
     if (ctx) {
         var myLineChart = new Chart(ctx, {
-            type: 'line',
-
+            type: 'scatter',
             data: {
-                labels: data.linespace,// [0.25, 0.50, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25],
                 datasets: [{
-                    data: data.dmArray,
+                    data: pointArray,
                     label: "Dyspersja",
                     borderColor: "#3e95cd",
                     fill: false
                 }]
             }, options: {
+                scales: {
+                    xAxes: [{
+                        type: 'linear',
+                        position: 'bottom'
+                    }]
+                },
                 title: {
                     display: true,
                     text: 'Wykres z soib'
@@ -103,119 +128,13 @@ ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
     }
 })
 
-// ipcRenderer.send('selectMaterial', 'SiO2GiO2');
-// console.log("Wysłalem dane")
-// ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
-//     data[1] = arg;
-//     console.log(arg);
-//     console.log(data[1].linespace);
-//     console.log(data[1].dmArray);
-//     var ctx: any = document.getElementById('myChart2');
-//     if (ctx) {
-//         var myLineChart = new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: data[1].linespace,
-//                 datasets: [{
-//                     data: data[1].dmArray,
-//                     label: "Dyspersja",
-//                     borderColor: "#3e95cd",
-//                     fill: false
-//                 }]
-//             }, options: {
-//                 title: {
-//                     display: true,
-//                     text: 'Wykres z soib'
-//                 }
-//             }
-//         });
-//     }  
-// })
-// ipcRenderer.send('selectMaterial', 'GeO2');
-// console.log("Wysłalem dane")
-// ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
-//     data[2] = arg;
-//     console.log(arg);
-//     console.log(data[2].linespace);
-//     console.log(data[2].dmArray);
-//     var ctx: any = document.getElementById('myChart3');
-//     if (ctx) {
-//         var myLineChart = new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: data[2].linespace,
-//                 datasets: [{
-//                     data: data[2].dmArray,
-//                     label: "Dyspersja",
-//                     borderColor: "#3e95cd",
-//                     fill: false
-//                 }]
-//             }, options: {
-//                 title: {
-//                     display: true,
-//                     text: 'Wykres z soib'
-//                 }
-//             }
-//         });
-//     }  
-// })
-// ipcRenderer.send('selectMaterial', 'Al2O3');
-// console.log("Wysłalem dane")
-// ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
-//     data[3] = arg;
 
-//     console.log(data[3].linespace);
-//     console.log(data[3].dmArray);
-//     console.log(arg);
-//     var ctx: any = document.getElementById('myChart4');
-//     if (ctx) {
-//         var myLineChart = new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: data[3].linespace,
-//                 datasets: [{
-//                     data: data[3].dmArray,
-//                     label: "Dyspersja",
-//                     borderColor: "#3e95cd",
-//                     fill: false
-//                 }]
-//             }, options: {
-//                 title: {
-//                     display: true,
-//                     text: 'Wykres z soib'
-//                 }
-//             }
-//         });
-//     }  
-// })
-// ipcRenderer.send('selectMaterial', 'ZrO2');
-// console.log("Wysłalem dane")
-// ipcRenderer.on('sendData', (event: any, arg: DataPack) => {
-//     data[4] = arg;
 
-//     console.log(data[4].linespace);
-//     console.log(data[4].dmArray);
-//     console.log(arg);
-//     var ctx: any = document.getElementById('myChart5');
-//     if (ctx) {
-//         var myLineChart = new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: data[4].linespace,
-//                 datasets: [{
-//                     data: data[4].dmArray,
-//                     label: "Dyspersja",
-//                     borderColor: "#3e95cd",
-//                     fill: false
-//                 }]
-//             }, options: {
-//                 title: {
-//                     display: true,
-//                     text: 'Wykres z soib'
-//                 }
-//             }
-//         });
-//     }  
-// })
 
-//API
+function dataToPoints(data: DataPack): Array<Point> {
+    let points: Array<Point> = new Array<Point>();
+    for (let i = 0; i < data.linespace.length; i++) {
+        points.push({ x: data.linespace[i], y: data.dmArray[i] })
+    }
+    return points;
+}

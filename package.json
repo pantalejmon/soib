@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/pantalejmon/soib#readme",
   "dependencies": {
+    "chart.js-scatter": "^1.1.4",
     "chartjs-plugin-zoom": "^0.7.4",
     "electron-tabs": "^0.11.0"
   }
