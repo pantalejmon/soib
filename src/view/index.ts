@@ -46,18 +46,23 @@ function getData(material: string) {
 
     switch (material) {
         case "SiO2":
+            document.getElementById("material")!.innerHTML = "[0.696749, 0.408218, 0.890815, 0.069066, 0.115662, 9.900559]";
             ipcRenderer.send('selectMaterial', 'SiO2');
             break;
         case "SiO2GiO2":
+            document.getElementById("material")!.innerHTML = "[0.71104, 0.451885, 0.704048, 0.06427, 0.129408, 9.425478]";
             ipcRenderer.send('selectMaterial', 'SiO2GiO2');
             break;
         case "GeO2":
+            document.getElementById("material")!.innerHTML = "[0.80686642, 0.71815848, 0.85416831, 0.068972606, 0.15396605, 11.841931]";
             ipcRenderer.send('selectMaterial', 'GeO2');
             break;
         case "Al2O3":
+            document.getElementById("material")!.innerHTML = "[1.023798, 1.058264, 5.280792, 0.06144821, 0.1106997, 17.92656]";
             ipcRenderer.send('selectMaterial', 'Al2O3');
             break;
         case "ZrO2":
+            document.getElementById("material")!.innerHTML = "[1.347091, 2.117788, 9.452943, 0.062543, 0.166739, 24.320570]";
             ipcRenderer.send('selectMaterial', 'ZrO2');
             break;
         default:
