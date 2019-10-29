@@ -5,24 +5,40 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>SOIB</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
-    <h1> Tutaj powstaje projekt z soib</h1>
+    <center><h1>Zależność Sellmeier'a</h1></center>
+    
     <!-- <div class="etabs-tabgroup">
         <div class="etabs-tabs"></div>
         <div class="etabs-buttons"></div>
     </div>
     <div class="etabs-views"></div> -->
+    $$n^2 - 1 = \sum_{i=1}^3 \frac{G_i\lambda^2}{\lambda^2 - \lambda_i^2}$$
 
+    <center>\(G_i\) oraz \(\lambda_i\) \([\mu m]\) zależą od składu materiału:</center>
+
+    <span id="elo"></span>
+    <center>\(SiO_2 = [0.696749, 0.408218, 0.890815, 0.069066, 0.115662, 9.900559]\)
+    \(SiO_2GiO_2 = [0.71104, 0.451885, 0.704048, 0.06427, 0.129408, 9.425478]\)
+    \(GeO_2 = [0.80686642, 0.71815848, 0.85416831, 0.068972606, 0.15396605, 11.841931]\)
+    \(AL_2O_3 = [1.023798, 1.058264, 5.280792, 0.06144821, 0.1106997, 17.92656]\)
+    \(ZrO_2 = [1.347091, 2.117788, 9.452943, 0.062543, 0.166739, 24.320570]\) </center>
+
+    <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+    $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
 
     <canvas id="myChart" width="600" height="400"></canvas>
     <div class="buttonbar">
-        <button onclick="getData('SiO2')" id="SiO2">SiO2</button>
-        <button onclick="getData('SiO2GiO2')" id="SiO2GiO2">SiO2GiO2</button>
-        <button onclick="getData('GeO2')" id="GeO2">GeO2</button>
-        <button onclick="getData('Al2O3')" id="Al2O3">Al2O3</button>
-        <button onclick="getData('ZrO2')" id="ZrO2">ZrO2</button>
+        <button onclick="getData('SiO2')" id="SiO2">\(SiO_2\)</button>
+        <button onclick="getData('SiO2GiO2')" id="SiO2GiO2">\(SiO_2GiO_2\)</button>
+        <button onclick="getData('GeO2')" id="GeO2">\(GeO_2\)</button>
+        <button onclick="getData('Al2O3')" id="Al2O3">\(Al_2O_3\)</button>
+        <button onclick="getData('ZrO2')" id="ZrO2">\(ZrO_2\)</button>
     </div>
     <script src="../../node_modules/chart.js/dist/Chart.bundle.min.js"></script>
     <script src="../../node_modules/chartjs-plugin-zoom/chartjs-plugin-zoom.min.js"></script>

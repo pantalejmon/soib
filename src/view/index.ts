@@ -34,6 +34,7 @@ ipcRenderer.send('selectMaterial', 'SiO2');
 //     src: "http://google.com",
 //     visible: true
 // });
+
 function getData(material: string) {
     let buttons: any = document.getElementsByTagName("button");
     for (let i = 0; i < buttons.length; i++) {
@@ -63,7 +64,6 @@ function getData(material: string) {
             ipcRenderer.send('selectMaterial', 'SiO2'); break;
     }
     console.log("kliknąłeś material: " + material)
-
 }
 
 
