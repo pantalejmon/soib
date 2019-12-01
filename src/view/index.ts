@@ -35,6 +35,10 @@ ipcRenderer.send('selectMaterial', 'SiO2');
 //     visible: true
 // });
 
+function setData(){
+    console.log("Tutaj zmienic osie");
+}
+
 function getData(material: string) {
     let buttons: any = document.getElementsByTagName("button");
     for (let i = 0; i < buttons.length; i++) {
