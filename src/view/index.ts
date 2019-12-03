@@ -35,8 +35,19 @@ ipcRenderer.send('selectMaterial', 'SiO2');
 //     visible: true
 // });
 
+
+
+let minvalue = "0"
+let step = "1"
+let maxvalue = "1"
+
+
 function setData(){
-    console.log("Tutaj zmienic osie");
+    minvalue = (<HTMLInputElement>document.getElementById("minvalue")).value;
+    maxvalue = (<HTMLInputElement>document.getElementById("maxvalue")).value;
+    step = (<HTMLInputElement>document.getElementById("step")).value;
+    ipcRenderer.send('name', minvalue, maxvalue, step);
+    console.log(minvalue,maxvalue,step);
 }
 
 function getData(material: string) {
