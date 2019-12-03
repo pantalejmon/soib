@@ -12,9 +12,14 @@ export default class Calculation {
 
     private pointer: MaterialRatio = this.SiO2;
 
-    compute(material: string): DataPack {
+    compute(material: string, min: number, max: number, step: number): DataPack {
         this.recognizeMaterial(material);
-        let wavelengths: Array<number> = this.linespace(0.25, 4.25, 1000);
+        if (!max) max = 4;
+        if (!min) min = 0.5;
+        if (!step) step = 0.01
+        let wavelengths: Array<number> = this.linespace(min, step, max);
+        //console.log(min, step, max);
+        //console.log(wavelengths);
         console.log("[CALCULATIONS] Licze dla materiału: " + this.pointer.getname());
         let DmArray: Array<number> = new Array<number>();
         for (let wl of wavelengths) DmArray.push(this.pointer.calculateD(wl));
@@ -48,9 +53,9 @@ export default class Calculation {
         }
     }
 
-    linespace(start: number, stop: number, cardinality: number): Array<number> {
+    linespace(start: number, step: number, stop: number): Array<number> {
         let ls: Array<number> = new Array<number>();
-        let step: number = (stop - start) / (cardinality - 1);
+        let cardinality: number = (stop - start) / (step);
         for (var i = 0; i < cardinality; i++) {
             ls.push(start + (step * i));
         }

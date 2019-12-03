@@ -11,8 +11,10 @@
 </head>
 
 <body>
-    <center><h1>Zależność Sellmeier'a</h1></center>
-    
+    <center>
+        <h1>Zależność Sellmeier'a</h1>
+    </center>
+
     <!-- <div class="etabs-tabgroup">
         <div class="etabs-tabs"></div>
         <div class="etabs-buttons"></div>
@@ -23,22 +25,22 @@
     <center>\(G_i\) oraz \(\lambda_i\) \([\mu m]\) zależą od składu materiału:</center>
 
     <center>
-     <span id="material"></span></center>
-     <p><span>Min Value</span> <label for="axisy"></label> <span>
-        <input type="text" name="axisy" value="0" id="minvalue" ></span> 
-        <span>Max Value</span> <label for="axisy"></label> <span>
-            <input type="text" name="axisy" value="0" id="maxvalue" ></span> 
-            <span>Step</span> <label for="axisy"></label> <span>
-                <input type="text" name="axisy" value="0" id="step" ></span> 
-                <input type="submit" onclick="setData()" value="Submit">
+        <span id="material"></span></center>
+    <div><span>Min Value</span> <label for="axisy"></label> <span>
+            <input type="text" name="axisy" value="0.5" id="minvalue"></span></div>
+    <div><span>Max Value</span> <label for="axisy"></label> <span>
+            <input type="text" name="axisy" value="4" id="maxvalue"></span></div>
+    <div><span>Step</span> <label for="axisy"></label> <span>
+            <input type="text" name="axisy" value="0.01" id="step"></span></div>
+    <div><button type="submit" onclick="setData()">Submit</button></div>
 
 
     <!-- When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
     $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ -->
 
-    <canvas id="myChart" width="600" height="400"></canvas>
+    <canvas id="myChart" width="500" height="190"></canvas>
     <div class="buttonbar">
-        <button onclick="getData('SiO2')" id="SiO2">\(SiO_2\)</button>
+        <button class="active" onclick="getData('SiO2')" id="SiO2">\(SiO_2\)</button>
         <button onclick="getData('SiO2GiO2')" id="SiO2GiO2">\(SiO_2GiO_2\)</button>
         <button onclick="getData('GeO2')" id="GeO2">\(GeO_2\)</button>
         <button onclick="getData('Al2O3')" id="Al2O3">\(Al_2O_3\)</button>

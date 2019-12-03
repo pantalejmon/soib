@@ -17,9 +17,7 @@ export default class WindowController {
 
         app.on("activate", () => {
             if (this.mainWindow === null) {
-
                 this.createWindow();
-
             }
         });
 
@@ -27,10 +25,9 @@ export default class WindowController {
 
 
     createAPI() {
-
         console.log("Tworze api");
-        ipcMain.on('selectMaterial', (event, arg) => {
-            event.reply('sendData', this.calculation.compute(arg));
+        ipcMain.on('selectMaterial', (event, material, min, max, step) => {
+            event.reply('sendData', this.calculation.compute(material, min, max, step));
         })
     }
 
@@ -45,14 +42,11 @@ export default class WindowController {
         })
         this.mainWindow.loadFile("../src/view/index.html");
         // Open the DevTools.
-        this.mainWindow.webContents.openDevTools();
+        //this.mainWindow.webContents.openDevTools();
         this.mainWindow.setMenuBarVisibility(false);
         // Emitted when the window is closed.
         this.mainWindow.on("closed", () => {
-            // Dereference the window object, usually you would store windows
-            // in an array if your app supports multi windows, this is the time
-            // when you should delete the corresponding element.
-            //mainWindow = null;
+
         });
     }
 }
